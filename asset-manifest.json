@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/instrumentTuner/static/css/main.70e87f2c.chunk.css",
+    "main.js": "/instrumentTuner/static/js/main.5037b688.chunk.js",
+    "main.js.map": "/instrumentTuner/static/js/main.5037b688.chunk.js.map",
+    "runtime-main.js": "/instrumentTuner/static/js/runtime-main.2cb99542.js",
+    "runtime-main.js.map": "/instrumentTuner/static/js/runtime-main.2cb99542.js.map",
+    "static/js/2.ac523a76.chunk.js": "/instrumentTuner/static/js/2.ac523a76.chunk.js",
+    "static/js/2.ac523a76.chunk.js.map": "/instrumentTuner/static/js/2.ac523a76.chunk.js.map",
+    "static/js/3.c3c3b7f2.chunk.js": "/instrumentTuner/static/js/3.c3c3b7f2.chunk.js",
+    "static/js/3.c3c3b7f2.chunk.js.map": "/instrumentTuner/static/js/3.c3c3b7f2.chunk.js.map",
+    "index.html": "/instrumentTuner/index.html",
+    "service-worker.js": "/instrumentTuner/service-worker.js",
+    "service-worker.js.map": "/instrumentTuner/service-worker.js.map",
+    "static/css/main.70e87f2c.chunk.css.map": "/instrumentTuner/static/css/main.70e87f2c.chunk.css.map",
+    "static/js/2.ac523a76.chunk.js.LICENSE.txt": "/instrumentTuner/static/js/2.ac523a76.chunk.js.LICENSE.txt",
+    "static/media/logo.103b5fa1.svg": "/instrumentTuner/static/media/logo.103b5fa1.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2cb99542.js",
+    "static/js/2.ac523a76.chunk.js",
+    "static/css/main.70e87f2c.chunk.css",
+    "static/js/main.5037b688.chunk.js"
+  ]
+}
