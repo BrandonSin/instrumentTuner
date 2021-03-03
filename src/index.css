@@ -6,6 +6,7 @@ body {
 }
 
 p{
+  font-size: calc(1px + 5vmin);
   color: black;
 }
 h4{
