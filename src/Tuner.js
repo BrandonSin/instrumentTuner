@@ -9,14 +9,13 @@ function Tuner(){
     const [frequencyValue, setFrequencyValue] = React.useState(440);
     const [states, setStates] = React.useState(0);
     const [currentNote, setNote] = React.useState("A");
-    const [audioContext, setAudioCtx] = React.useState(0);
-    const [analyser, setAnalyser] = React.useState(0);
+    var audioContext = new(window.AudioContext || window.webkitAudioContext)();
 
 
     
 
     function vTuner(){
-        var audioContext = new(window.AudioContext || window.webkitAudioContext)();
+        audioContext.resume()
         var microphone;
         setStates(1);
         var analyser = audioContext.createAnalyser();
@@ -39,15 +38,16 @@ function Tuner(){
     }
 
     function beginRecording() {
-        analyser.fftSize = 32768; // power of 2, between 32 and max unsigned integer
+        analyser.fftSize = 2048; // power of 2, between 32 and max unsigned integer
         var bufferLength = analyser.fftSize;
         var freqBinDataArray = new Uint8Array(bufferLength);
 
         var checkAudio = function() {
         analyser.getByteFrequencyData(freqBinDataArray);
         var index = getIndexOfMax(freqBinDataArray)
-        var frequency =  ((index)*((audioContext.sampleRate/2)/ analyser.fftSize))
+        var frequency =  ((index)*((audioContext.sampleRate)/ analyser.fftSize))
         var musicNote = findNote(frequency)
+        console.log("frequency: " + frequency);
         if (musicNote === undefined){
             setNote("...");
         }
@@ -77,11 +77,7 @@ function Tuner(){
    
        
     }
-    React.useEffect( ()=>{
-        if(audioContext !== 0){
-          setAnalyser(audioContext.createAnalyser());
-        }    
-      },[audioContext])
+    
     return(
         <div className = "tuner">
             <h4>Violin Tuner</h4>
@@ -93,7 +89,7 @@ function Tuner(){
                 minValue={0}
                 currentValueText={'Frequency: ${value}'}
                 customSegmentStops={[0, 196, 293, 440, 659, 880]}
-                needleTransitionDuration={3000}
+                needleTransitionDuration={500}
                 needleHeightRatio={0.7}    
                  />    
             <button onClick={vTuner} className = "start" style={{visibility: states === 0 ? 'visible' : 'hidden' }}>Start</button>
