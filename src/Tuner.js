@@ -18,9 +18,10 @@ function Tuner(){
     
     const [frequencyValue, setFrequencyValue] = React.useState(440);
     const [states, setStates] = React.useState(0);
+    const [currentNote, setNote] = React.useState("A");
 
     function vTuner(){
-        var audioContext = new(window.AudioContext || window.webkitAudioContext)();
+        var audioContext = new AudioContext();
         var microphone;
         setStates(1);
         var analyser = audioContext.createAnalyser();
@@ -62,12 +63,20 @@ function Tuner(){
 
         var index = getIndexOfMax(freqBinDataArray)
         var frequency =  ((index)*((audioContext.sampleRate/2)/ analyser.fftSize))
+
         var musicNote = calculateNote(frequency)
+        if (musicNote == undefined){
+            setNote("...");
+        }
+        else{
+            setNote(musicNote);
+        }
+
         // console.log('current Note: ' + musicNote);
 
         tune.add(voice);
         tune.updatePitch();
-        console.log(tune.pitch);
+        // console.log(tune.pitch);
 
         var roundFrequency = frequency.toFixed(1);
         setFrequencyValue(roundFrequency);
@@ -93,8 +102,8 @@ function Tuner(){
     }
 
     function calculateNote(frequency){
-        var noteStrings = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
-        
+        // https://en.wikipedia.org/wiki/Pitch_(music) Formula for Pitches
+        var noteStrings = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];  
         var noteNum = 12 * (Math.log( frequency / 440 )/Math.log(2) );
         var note = Math.round( noteNum ) + 69;
         return noteStrings[note%12]
@@ -107,13 +116,13 @@ function Tuner(){
 
     return(
         <div className = "tuner">
-            <p>Violin Tuner</p>
+            <h4>Violin Tuner</h4>
             <div className = "gauge">
             <ReactSpeedometer
                 value={frequencyValue}
                 maxValue={880}
                 minValue={0}
-                currentValueText={'Value: ${value}'}
+                currentValueText={'Frequency: ${value}'}
                 customSegmentStops={[0, 196, 293, 440, 659, 880]}
                 needleTransition ="easeElasticOut"
                 needleTransitionDuration={3000}
@@ -121,6 +130,7 @@ function Tuner(){
                 
                  />
             </div>
+            <p>Current Note: {currentNote}</p>
             
             
             <button onClick={vTuner} className = "start" style={{visibility: states == 0 ? 'visible' : 'hidden' }}>Start</button>
