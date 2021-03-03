@@ -14,19 +14,50 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-image: linear-gradient(45deg, #c19a6c 25%, #F6F0CF 25%, #F6F0CF 50%, #c19a6c 50%, #c19a6c 75%, #F6F0CF 75%, #F6F0CF 100%);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(10px + 10vmin);
   color: white;
 }
 
 .App-link {
   color: #61dafb;
 }
+.gauge {
+}
+
+/* https://www.w3schools.com/css/tryit.asp?filename=trycss_buttons_animate3 */
+.start {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: black;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  font-family: 'Brush Script MT', cursive;
+
+  
+}
+
+.start:hover {background-color: grey}
+
+.start:active {
+  background-color: grey;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+
 
 @keyframes App-logo-spin {
   from {
