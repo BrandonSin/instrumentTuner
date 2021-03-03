@@ -10,9 +10,11 @@ function Tuner(){
     const [frequencyValue, setFrequencyValue] = React.useState(440);
     const [states, setStates] = React.useState(0);
     const [currentNote, setNote] = React.useState("A");
+    var AudioContext = window.AudioContext || window.webkitAudioContext;
+    var audioContext = new AudioContext();  
 
     function vTuner(){
-        var audioContext = new AudioContext();
+        audioContext.resume()
         var microphone;
         setStates(1);
         var analyser = audioContext.createAnalyser();
@@ -82,7 +84,8 @@ function Tuner(){
     return(
         <div className = "tuner">
             <h4>Violin Tuner</h4>
-            <p>Current Note: {currentNote}</p>
+            <p style={{color: (frequencyValue >= 191 && frequencyValue <= 201) || (frequencyValue >= 288 && frequencyValue <= 298) ||
+              (frequencyValue >= 430 && frequencyValue <= 460) || (frequencyValue >= 654 && frequencyValue <= 664) ? 'green' : 'black'}}>Current Note: {currentNote}</p>
             <ReactSpeedometer
                 value={frequencyValue}
                 maxValue={880}
